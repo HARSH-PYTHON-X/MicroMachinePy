@@ -160,6 +160,24 @@ def check_solutions_of_linear_equation_in_two_variables (a1x, a1y, a1c, a2x, a2y
 
     elif x1 == x2 == x3 :
         return "infinite solutions"
+    
+
+
+def area_of_right_angle_traingle (base, height) :
+    area = 0.5 * base * height
+
+    return area
+
+
+def check_common_AP (list_AP) :
+    D1 = list_AP[1] - list_AP[0]
+    D2 = list_AP[3] - list_AP[2]
+
+    if D1 == D2 :
+        return "0"
+    
+    elif D1 != D2 :
+        return "1"
 
 # PHYSICS
 
@@ -183,3 +201,15 @@ def kinetic_energy_of_obj (mass, velocity) :
 def find_height_from_time (time_taken_from_down_to_up_and_up_to_down) :
     height = time_taken_from_down_to_up_and_up_to_down * time_taken_from_down_to_up_and_up_to_down * 4.9
     return height
+
+
+
+
+
+#! EXTRA
+
+
+def speak (txt) :
+    engine = pyttsx3.init()
+    engine.say(txt)
+    engine.runAndWait()
