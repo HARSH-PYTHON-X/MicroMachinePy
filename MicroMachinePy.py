@@ -25,11 +25,6 @@ def _SQUARE_ROOT_ (num) :
     root = num ** 0.5
     return root
 
-def _random_ (_choices_, _no_of_output_ = 1) :
-    outcome = ''.join(random.sample(_choices_, _no_of_output_))
-    
-    return outcome
-
 def _LCM_ (x, y) :
     if x > y:
        greater = x
