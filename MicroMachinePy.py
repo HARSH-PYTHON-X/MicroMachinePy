@@ -4,10 +4,11 @@ import pyautogui as pg
 import pydirectinput as pd
 import cv2
 import pyttsx3
-import speech_recognition
+import speech_recognition as sr
 import random
 
 import math
+import webbrowser
 
 print("using __MicroMachinePy__")
 
@@ -24,6 +25,11 @@ def choose_random (choose_from, length = 1) :
 def _SQUARE_ROOT_ (num) :
     root = num ** 0.5
     return root
+
+def _random_ (_choices_, _no_of_output_ = 1) :
+    outcome = ''.join(random.sample(_choices_, _no_of_output_))
+    
+    return outcome
 
 def _LCM_ (x, y) :
     if x > y:
@@ -173,6 +179,18 @@ def check_common_AP (list_AP) :
     
     elif D1 != D2 :
         return "1"
+    
+
+def find_mean (lis) :
+    sigma_fi = 0
+
+    for elements in range (len(lis)) :
+        sigma_fi = sigma_fi + lis[elements]
+
+    mean = sigma_fi / len(lis)
+
+    return mean
+    
 
 # PHYSICS
 
@@ -198,13 +216,74 @@ def find_height_from_time (time_taken_from_down_to_up_and_up_to_down) :
     return height
 
 
-
-
+def check_AP (lis) :
+    #! condition 1
+     
+    if lis[1] - lis[0] == lis[3] - lis[2] :
+        return 0
 
 #! EXTRA
 
 
 def speak (txt) :
     engine = pyttsx3.init()
+
     engine.say(txt)
     engine.runAndWait()
+
+
+
+def LST_to_STR (lst) :
+    str1 = ""
+ 
+    for ele in lst:
+        str1 += ele
+ 
+    return str1
+
+
+def STR_to_LST (str) :
+    li = list(str.split(" "))
+    return li
+
+def write (txt) :
+    pg.write(txt)
+
+
+def OPEN (url) :
+    webbrowser.open(url) 
+
+
+
+#! VOICE INPUT subdivision
+
+
+def listen_command (listening_prompt = "listening ...",  command_prompt = "command >", except_prompt = "please command again ...") :
+    r = sr.Recognizer()
+
+    with sr.Microphone() as source :
+        print(f"{listening_prompt}")
+        audio = r.listen(source)
+
+        try :
+            cmd = r.recognize_google(audio)
+            print(f"{command_prompt}", cmd)
+
+        except Exception as e :
+            print(f"{except_prompt}")
+            return 'None'
+        return cmd
+    
+def voice_input (ls_prompt = "listening ...", command_prompt = "command >", except_prmpt = "please speak again") :
+    cmd = listen_command(ls_prompt, command_prompt, except_prmpt).lower().lower()
+    return cmd
+
+#! INFO
+
+def info () :
+    print()
+    print("created by - Harsh Pro")
+    print()
+
+    print("MicroMachinePy is used for MACHINE LEANRING in mini computers / micro controllers such as ESP32, RASPBERRY PI or ARDUINO")
+    print()
