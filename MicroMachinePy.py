@@ -278,6 +278,45 @@ def voice_input (ls_prompt = "listening ...", command_prompt = "command >", exce
     cmd = listen_command(ls_prompt, command_prompt, except_prmpt).lower().lower()
     return cmd
 
+def n_term_of_AP (AP, term_no) :
+    global d, a, n, n_th_term
+    d = 0
+
+    if len(AP) >= 4 :
+        if AP[1] - AP[0] == AP[3] - AP[2] :
+            d = AP[1] - AP[0]
+
+    elif len(AP) <= 3 :
+        d = AP[1] - AP[0]
+
+    a = AP[0]
+
+    n = term_no
+
+    n_th_term = a + (n - 1) * d
+
+    return n_th_term
+
+def no_of_term_in_AP (AP, term_digit) :
+    global d, a, num, an
+
+    d = 0
+
+    if len(AP) >= 4 :
+        if AP[1] - AP[0] == AP[3] - AP[2] :
+            d = AP[1] - AP[0]
+
+    elif len(AP) <= 3 :
+        d = AP[1] - AP[0]
+
+    a = AP[0]
+
+    num = term_digit
+
+    n = ((num - a) / d) + 1
+
+    return n
+
 #! INFO
 
 def info () :
